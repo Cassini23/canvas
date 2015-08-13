@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Filter</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            var canvas = document.querySelector('canvas');
+            var context = canvas.getContext('2d');
+
+            var image = new Image();
+            image.addEventListener('load',function(){
+                context.drawImage(image,0,0); //original image
+                var obj = context.getImageData(0,0,image.width,image.height);
+                var arr = obj.data;
+                var row =100;
+                var col =200;
+                for(var i = row *image.width +col; i < row * image.width + col + 100; i++){
+                    for(var j=0;j<3;j++){
+                        arr[i * 4 + j] = 0;
+                    }
+                }
+
+                context.putImageData(obj, 0,0);
+
+            });
+            image.src='SunRise.jpg';
+        });
+    </script>
+</head>
+<body>
+<canvas width="600" height="600">
+
+</canvas>
+</body>
+</html>

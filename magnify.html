@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            var image = new Image();
+            var canvas = document.querySelector('canvas');
+            var context = canvas.getContext('2d');
+            image.addEventListener('load', function(){
+                //document.body.appendChild(image);
+                context.drawImage(image,0,0,image.width/2,image.height/2); //original image
+            });
+            image.src ='http://i0.kym-cdn.com/photos/images/original/000/733/273/448.jpg';
+
+            canvas.addEventListener('mousemove',
+                    function (event){
+                        context.clearRect(0,0,canvas.width,canvas.height);
+                        context.drawImage(image,0,0,image.width/2,image.height/2); //original image
+
+                        var sx, sy,dx,dy,swidth = 100,sheight =100,dwidth = 100,dheight =100;
+                        sx = (event.clientX*2) - swidth/2; //divide by 2 to center the image at the centre
+                        sy = (event.clientY*2) -sheight/2;
+                        dx = (event.clientX) - dwidth/2; //divide by 2 to center the image at the centre
+                        dy = (event.clientY) - dheight/2;
+
+                        context.drawImage(image, sx, sy, swidth, sheight, dx, dy, dwidth, dheight);
+                    });
+
+        });
+    </script>
+</head>
+<body>
+<canvas width="600" height="600"></canvas>
+</body>
+</html>

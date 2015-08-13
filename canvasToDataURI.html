@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        a{
+            position: fixed;
+            top: 0;
+        }
+        input{
+            position: fixed;
+            top:0;
+            left:0;
+        }
+        button{
+            position: fixed;
+            top:0;
+            right:0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            var canvas = document.querySelector('canvas');
+            var context = canvas.getContext('2d');
+            var dataurl = canvas.toDataURL();
+            var input = document.querySelector('input[type="file"]');
+            input.addEventListener('change', function(){
+               if(this.files[0].type.indexOf('image')!== -1){
+                   console.log(this.files[0]);
+                   var image = new Image();
+                   image.src = this.files[0].name;
+                   image.addEventListener('load',function(){
+
+                   })
+
+               }
+
+            });
+            console.log(dataurl);
+        });
+    </script>
+</head>
+<body>
+Select file: <input type="file" multiple/>
+<canvas width="600" height ="600"></canvas>
+<button>Save canvas</button>
+</body>
+</html>
